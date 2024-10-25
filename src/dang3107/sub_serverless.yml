@@ -1,0 +1,10 @@
+dang3107:
+  name: ${self:custom.prefix}-dang3107
+  handler: src.dang3107.dang3107.lambda_handler
+  layers:
+    - Ref: DefaultLambdaLayer
+    - Ref: PythonRequirementsLambdaLayer
+    - Ref: PandasNumpyLambdaLayer
+  environment:
+    NAME:  ${env:NAMESPACE}
+

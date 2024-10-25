@@ -1,0 +1,10 @@
+anhnm:
+  name: ${self:custom.prefix}-anhnm1135
+  handler: src.anhnm1135.anhnm1135.lambda_handler
+  layers:
+    - Ref: DefaultLambdaLayer
+    - Ref: PythonRequirementsLambdaLayer
+    - Ref: PandasNumpyLambdaLayer
+  environment:
+    NAME:  ${env:NAMESPACE}
+

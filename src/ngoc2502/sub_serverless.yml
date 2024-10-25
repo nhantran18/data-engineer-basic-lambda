@@ -1,0 +1,10 @@
+ngoc2502:
+  name: ${self:custom.prefix}-ngoc2502
+  handler: src.ngoc2502.ngoc2502.lambda_handler
+  layers:
+    - Ref: DefaultLambdaLayer
+    - Ref: PythonRequirementsLambdaLayer
+    - Ref: PandasNumpyLambdaLayer
+  environment:
+    NAME:  ${env:NAMESPACE}
+

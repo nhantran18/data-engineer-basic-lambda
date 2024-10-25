@@ -1,0 +1,10 @@
+lmq0411:
+  name: ${self:custom.prefix}-lmq0411
+  handler: src.lmq0411.lmq0411.lambda_handler
+  layers:
+    - Ref: DefaultLambdaLayer
+    - Ref: PythonRequirementsLambdaLayer
+    - Ref: PandasNumpyLambdaLayer
+  environment:
+    NAME:  ${env:NAMESPACE}
+

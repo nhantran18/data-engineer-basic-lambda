@@ -1,0 +1,10 @@
+chaunguyen_test:
+  name: ${self:custom.prefix}-chaunguyen_test
+  handler: src.chaunguyen.chaunguyen.lambda_handler
+  layers:
+    - Ref: DefaultLambdaLayer
+    - Ref: PythonRequirementsLambdaLayer
+    - Ref: PandasNumpyLambdaLayer
+  environment:
+    NAME:  ${env:NAMESPACE}
+

@@ -1,0 +1,10 @@
+duybb_test:
+  name: ${self:custom.prefix}-duybb_test
+  handler: src.duybb.handler.trigger_events
+  layers:
+    - Ref: DefaultLambdaLayer
+    - Ref: PythonRequirementsLambdaLayer
+    - Ref: PandasNumpyLambdaLayer
+  environment:
+    NAME:  ${env:NAMESPACE}
+

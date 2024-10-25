@@ -1,0 +1,10 @@
+phuc273:
+  name: ${self:custom.prefix}-phuc273
+  handler: src.phuc273.phuc273.lambda_handler
+  layers:
+    - Ref: DefaultLambdaLayer
+    - Ref: PythonRequirementsLambdaLayer
+    - Ref: PandasNumpyLambdaLayer
+  environment:
+    NAME:  ${env:NAMESPACE}
+

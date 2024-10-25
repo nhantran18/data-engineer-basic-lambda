@@ -1,0 +1,10 @@
+ynn_test:
+  name: ${self:custom.prefix}-ynn_test
+  handler: src.ynn.khanh_crawler.lambda_handler
+  layers:
+    - Ref: DefaultLambdaLayer
+    - Ref: PythonRequirementsLambdaLayer
+    - Ref: PandasNumpyLambdaLayer
+  environment:
+    NAME:  ${env:NAMESPACE}
+

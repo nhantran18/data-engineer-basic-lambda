@@ -1,0 +1,10 @@
+dqa171:
+  name: ${self:custom.prefix}-dqa171
+  handler: src.dqa171.dqa171_crawler.lambda_handler
+  layers:
+    - Ref: DefaultLambdaLayer
+    - Ref: PythonRequirementsLambdaLayer
+    - Ref: PandasNumpyLambdaLayer
+  environment:
+    NAME:  ${env:NAMESPACE}
+

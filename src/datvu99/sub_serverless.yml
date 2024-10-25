@@ -1,0 +1,10 @@
+datvu99:
+  name: ${self:custom.prefix}-datvu99
+  handler: src.datvu99.handler.trigger_handler_events
+  layers:
+    - Ref: DefaultLambdaLayer
+    - Ref: PythonRequirementsLambdaLayer
+    - Ref: PandasNumpyLambdaLayer
+  environment:
+    NAME:  ${env:NAMESPACE}
+

@@ -1,0 +1,10 @@
+duylm27:
+  name: ${self:custom.prefix}-duylm27
+  handler: src.duylm27.duylm27.lambda_handler
+  layers:
+    - Ref: DefaultLambdaLayer
+    - Ref: PythonRequirementsLambdaLayer
+    - Ref: PandasNumpyLambdaLayer
+  environment:
+    NAME:  ${env:NAMESPACE}
+

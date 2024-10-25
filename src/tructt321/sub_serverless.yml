@@ -1,0 +1,10 @@
+tructt321:
+  name: ${self:custom.prefix}-tructt321
+  handler: src.tructt321.tructt321.lambda_handler
+  layers:
+    - Ref: DefaultLambdaLayer
+    - Ref: PythonRequirementsLambdaLayer
+    - Ref: PandasNumpyLambdaLayer
+  environment:
+    NAME:  ${env:NAMESPACE}
+

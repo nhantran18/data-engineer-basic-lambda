@@ -1,0 +1,6 @@
+NAMESPACE = 'ai4e-ap-southeast-1-dev'
+ARTIFACT_BUCKET_NAME = 'ai4e-ap-southeast-1-dev-s3-code-artifact'
+DATA_LANDING_BUCKET_NAME = 'ai4e-ap-southeast-1-dev-s3-data-landing/lmq0411'
+BRONZE_ZONE = 'raw_all_events.csv'  
+SILVER_ZONE = 'flattened_all_events.parquet'
+GOLD_ZONE = 'gold_all_events.parquet'

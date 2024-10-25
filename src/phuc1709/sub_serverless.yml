@@ -1,0 +1,10 @@
+phuc1709:
+  name: ${self:custom.prefix}-phuc1709
+  handler: src.phuc1709.phuc1709.lambda_handler
+  layers:
+    - Ref: DefaultLambdaLayer
+    - Ref: PythonRequirementsLambdaLayer
+    - Ref: PandasNumpyLambdaLayer
+  environment:
+    NAME:  ${env:NAMESPACE}
+

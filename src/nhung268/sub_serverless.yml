@@ -1,0 +1,10 @@
+nhung268:
+  name: ${self:custom.prefix}-nhung268
+  handler: src.nhung268.rds2s3.lambda_handler
+  layers:
+    - Ref: DefaultLambdaLayer
+    - Ref: PythonRequirementsLambdaLayer
+    - Ref: PandasNumpyLambdaLayer
+  environment:
+    NAME:  ${env:NAMESPACE}
+

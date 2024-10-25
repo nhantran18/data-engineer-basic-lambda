@@ -1,0 +1,88 @@
+service: ai4e-lambda-c03
+
+frameworkVersion: "3"
+
+package:
+  exclude:
+    - node_modules/**
+    - README.md
+    - package.json
+    - package-lock.json
+    - buildspec.yaml
+    - bitbucket-pipelines.yml
+    - ./src/lambda_layers/**
+
+plugins:
+  - serverless-python-requirements
+  - serverless-deployment-bucket
+
+custom:
+  basePath: src
+  region: ap-southeast-1
+  prefix: lbd-func
+#  pythonRequirements:
+#    layer: true
+  pythonRequirements:
+    dockerizePip: false
+    usePoetry: false
+    layer: true
+    useDownloadCache: false
+    useStaticCache: false
+    pipCmdExtraArgs: [ '--platform manylinux2014_x86_64', '--only-binary=:all:' ]
+    slim: true
+
+
+provider:
+  name: aws
+  runtime: python3.12
+  region: ap-southeast-1
+  memorySize: 512
+  timeout: 300
+  deploymentBucket:
+    name: ${env:LAMBDA_DEPLOYMENT_BUCKET_NAME}
+    maxPreviousDeploymentArtifacts: 10
+    blockPublicAccess: true
+    skipPolicySetup: true
+    versioning: true
+    serverSideEncryption: AES256
+layers:
+  default:
+    package:
+      artifact: ./src/lambda_layers/requests_bs4_lxml_psycopg2_binary.zip
+    name: ai4e_requests_bs4_lxml_psycopg2_layer
+    description: Contains requests, bs4, lxml, psycopg2-binary
+    compatibleRuntimes:
+      - python3.12
+
+  pandasNumpy:
+    package:
+      artifact: ./src/lambda_layers/numpy_pandas_layer3_12.zip
+    name: ai4e_numpy_pandas_lambda_layer
+    description: Contains pandas_numpy
+    compatibleRuntimes:
+      - python3.12
+
+  chromeDriver:
+    package:
+      artifact: ./src/lambda_layers/chromedriver.zip
+    name: ai4e_chromedriver_lambda_layer
+    description: Contains chromedriver
+    compatibleRuntimes:
+      - python3.12
+
+functions:
+  - ${file(./src/ai4e_crawler/sub_serverless.yml)}
+  - ${file(./src/ynn/sub_serverless.yml)}
+  - ${file(./src/chaunguyen/sub_serverless.yml)}
+  - ${file(./src/nhantran/sub_serverless.yml)}
+  - ${file(./src/dqa171/sub_serverless.yml)}
+  - ${file(./src/anhnm1135/sub_serverless.yml)}
+  - ${file(./src/duylm27/sub_serverless.yml)}
+  - ${file(./src/phuc273/sub_serverless.yml)}
+  - ${file(./src/tructt321/sub_serverless.yml)}
+  - ${file(./src/lmq0411/sub_serverless.yml)}
+  - ${file(./src/phuc1709/sub_serverless.yml)}
+  - ${file(./src/dang3107/sub_serverless.yml)}
+  - ${file(./src/ngoc2502/sub_serverless.yml)}
+  - ${file(./src/nhung268/sub_serverless.yml)}
+  - ${file(./src/datvu99/sub_serverless.yml)}

@@ -1,0 +1,10 @@
+nhan_test:
+  name: ${self:custom.prefix}-nhan_test
+  handler: src.nhantran.movie_crawl.lambda_handler
+  layers:
+    - Ref: DefaultLambdaLayer
+    - Ref: PythonRequirementsLambdaLayer
+    - Ref: PandasNumpyLambdaLayer
+  environment:
+    NAME:  ${env:NAMESPACE}
+
